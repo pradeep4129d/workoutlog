@@ -2,6 +2,7 @@ import React from 'react'
 
 export const Exercise = () => {
   return (
-    <div>Exercise</div>
+    <div>Exercise component</div>
+
   )
 }
