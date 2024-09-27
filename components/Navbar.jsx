@@ -5,6 +5,7 @@ export const Navbar = () => {
     const [opened,setOpened]=useState(false)
   return (
     <>
+    <div className="shade"></div>
     <div class="background" onClick={()=>{setOpened(opened?false:true)}}>
             <button class={"menu__icon "+opened}>
                 <span></span>

@@ -78,6 +78,19 @@ button {
   left: 50%;
   transform: translateX(-50%);
 }
+.shade{
+  width: 54%;
+  height:70px;
+  border-top-left-radius: 100px;
+  border-top-right-radius:100px ;
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #12181f;
+  box-shadow: -10px -10px 15px #12181f,
+             10px 10px 15px #12181f;                     ;
+}
 .all, .workout,.plan{
   position: absolute;
   bottom: 0px;
@@ -116,4 +129,31 @@ ion-icon{
 }
 .plan.true{
   left: 80%;
+}
+.all-tab{
+  height: max-content;
+  margin-top: 3px;
+}
+.muscles>div{
+  display: flex;
+  align-items: center;
+  background-color: #12181f;
+  border: 1px solid #353b44;
+  border-radius: 10px;
+}
+.m14,.m15{
+  border:1px solid transparent;
+}
+img{
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+.border{
+  width: 3px;
+  background: linear-gradient(180deg, #703fc7, #3fb950, #33b3ae, #f778ba);
+}
+.muscles>div{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
