@@ -7,85 +7,87 @@ export const All = () => {
             <div class="notification">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
-                <div class="notititle"><h3>Chest</h3></div>
+                <div class="notititle">
+                  <h3>Chest</h3>
+                </div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/chest-1_ifcuvs-removebg-preview_gvnhb2.png" alt="" />
                 <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification a">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Lats</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/lats_lrkcif-removebg-preview_wvrdmf.png" alt="" />
                 <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification b">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Triceps</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497909/triceps_gjkht0-removebg-preview_qaly0w.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification c">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Biceps</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497903/bicep_difpw2-removebg-preview_afy3r9.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification d">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Anterior Delts</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497903/anterior_delts_plsncu-removebg-preview_onvaym.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification e">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Posterior delts</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/posterior_delt_o0bdfn-removebg-preview_uearv7.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification f">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Traps</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/traps_psil80-removebg-preview_hsqrpl.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification g">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Quads</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497908/quads_cszu6q-removebg-preview_hkgoem.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification h">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Hamstrings</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497905/hamstrings_nwpqod-removebg-preview_brum3o.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification i">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Glutues</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497904/gluteus_gn6mn8-removebg-preview_pffrsi.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification j">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Adductors</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/adductors_xlozk2-removebg-preview_pykaip.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification k">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Gastrocnemius</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/gastrocnemius_hudn3u-removebg-preview_n6eoca.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification">
+            <div class="notification l">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Abs</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/abs_eoeeem-removebg-preview_hckomn.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
          
-            <div class="notification">
+            <div class="notification m">
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Forearms</h3></div>

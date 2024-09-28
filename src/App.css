@@ -164,7 +164,7 @@ img{
   overflow: hidden;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 16px;
-  --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+  --gradient:#2eadff;
   --color: #32a6ff
 }
 .notification>ion-icon{
@@ -194,6 +194,54 @@ img{
   background: var(--gradient);
   transition: transform 300ms ease;
   z-index: 4;
+}
+.info{
+  position: absolute;
+  top: 50%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.notification.a::after{
+  background:linear-gradient(180deg,#2eadff , #7e61ff) ;
+}
+.notification.b::after{
+  background:#7e61ff;
+}
+.notification.c::after{
+  background:linear-gradient(180deg, #7e61ff, #3fb950) ;
+}
+.notification.d::after{
+  background:#3fb950;
+}
+.notification.e::after{
+  background:linear-gradient(180deg, #3fb950, #33b3ae) ;
+}
+.notification.f::after{
+  background: #33b3ae ;
+}
+.notification.g::after{
+  background:linear-gradient(180deg, #33b3ae, #f778ba) ;
+}
+.notification.h::after{
+  background:#f778ba ;
+}
+.notification.i::after{
+  background:linear-gradient(180deg, #f778ba, #2eadff) ;
+}
+.notification.j::after{
+  background:#2eadff;
+}
+.notification.k::after{
+  background:linear-gradient(180deg, #2eadff, #7e61ff);
+}
+.notification.l::after{
+  background:#7e61ff;
+}
+.notification.m::after{
+  background:linear-gradient(180deg, #7e61ff, #3fb950);
 }
 
 .notification:hover:after {
@@ -230,7 +278,7 @@ img{
   width: 20rem;
   height: 20rem;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle closest-side at center, white, transparent);
+  background: radial-gradient(circle closest-side at center, rgb(156, 153, 153), transparent);
   opacity: 0.1;
   transition: opacity 300ms ease;
 }
