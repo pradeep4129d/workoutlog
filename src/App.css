@@ -78,19 +78,7 @@ button {
   left: 50%;
   transform: translateX(-50%);
 }
-.shade{
-  width: 54%;
-  height:70px;
-  border-top-left-radius: 100px;
-  border-top-right-radius:100px ;
-  position: fixed;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #12181f;
-  box-shadow: -10px -10px 15px #12181f,
-             10px 10px 15px #12181f;                     ;
-}
+
 .all, .workout,.plan{
   position: absolute;
   bottom: 0px;
@@ -132,7 +120,14 @@ ion-icon{
 }
 .all-tab{
   height: max-content;
+  width: 100%;
   margin-top: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.muscles{
+  width: 90%;
 }
 .muscles>div{
   display: flex;
@@ -156,4 +151,122 @@ img{
 .muscles>div{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.notification {
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  position: relative;
+  width:100%;
+  height: 8rem;
+  background: #0d1117;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+  --color: #32a6ff
+}
+.notification>ion-icon{
+  z-index: 100;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #989898;
+}
+.notification:before {
+  position: absolute;
+  content: "";
+  inset: 0.0625rem;
+  border-radius: 0.9375rem;
+  background: #0d1117;
+  z-index: 2
+}
+
+.notification:after {
+  position: absolute;
+  content: "";
+  width: 0.25rem;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gradient);
+  transition: transform 300ms ease;
+  z-index: 4;
+}
+
+.notification:hover:after {
+  transform: translateX(0.15rem)
+}
+
+.notititle {
+  color: var(--color);
+  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+
+.notibody {
+  color: #99999d;
+  padding: 0 1.25rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+
+.notification:hover .notibody {
+  transform: translateX(0.25rem)
+}
+
+.notiglow,
+.notiborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, white, transparent);
+  opacity: 0.1;
+  transition: opacity 300ms ease;
+}
+
+.notiglow {
+  z-index: 3;
+}
+
+.notiborderglow {
+  z-index: 1;
+}
+
+.notification:hover .notiglow {
+  opacity: 0.1
+}
+
+.notification:hover .notiborderglow {
+  opacity: 0.1
+}
+
+.note {
+  color: var(--color);
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  width: 75%;
+}
+.notification>img{
+  z-index: 100;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
