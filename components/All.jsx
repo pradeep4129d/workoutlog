@@ -1,10 +1,17 @@
 import React from 'react'
+import { useStore } from '../src/store'
+import { useNavigate } from 'react-router-dom'
 
 export const All = () => {
+    const {setMuscle}=useStore()
+    const navigate=useNavigate()
   return (
     <div className='all-tab'>
       <div className="muscles">
-            <div class="notification">
+            <div class="notification" onClick={()=>{
+                setMuscle({name:'chest',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/chest-1_ifcuvs-removebg-preview_gvnhb2.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle">
@@ -13,81 +20,120 @@ export const All = () => {
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/chest-1_ifcuvs-removebg-preview_gvnhb2.png" alt="" />
                 <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification a">
+            <div class="notification a"  onClick={()=>{
+                setMuscle({name:'lats',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/lats_lrkcif-removebg-preview_wvrdmf.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Lats</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/lats_lrkcif-removebg-preview_wvrdmf.png" alt="" />
                 <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification b">
+            <div class="notification b" onClick={()=>{
+                setMuscle({name:'triceps',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497909/triceps_gjkht0-removebg-preview_qaly0w.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Triceps</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497909/triceps_gjkht0-removebg-preview_qaly0w.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification c">
+            <div class="notification c"onClick={()=>{
+                setMuscle({name:'biceps',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497903/bicep_difpw2-removebg-preview_afy3r9.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Biceps</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497903/bicep_difpw2-removebg-preview_afy3r9.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification d">
+            <div class="notification d" onClick={()=>{
+                setMuscle({name:'anteriordelt',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497903/anterior_delts_plsncu-removebg-preview_onvaym.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Anterior Delts</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497903/anterior_delts_plsncu-removebg-preview_onvaym.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification e">
+            <div class="notification e" onClick={()=>{
+                setMuscle({name:'posteriordelt',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/posterior_delt_o0bdfn-removebg-preview_uearv7.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Posterior delts</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/posterior_delt_o0bdfn-removebg-preview_uearv7.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification f">
+            <div class="notification f" onClick={()=>{
+                setMuscle({name:'traps',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/traps_psil80-removebg-preview_hsqrpl.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Traps</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/traps_psil80-removebg-preview_hsqrpl.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification g">
+            <div class="notification g" onClick={()=>{
+                setMuscle({name:'quads',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497908/quads_cszu6q-removebg-preview_hkgoem.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Quads</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497908/quads_cszu6q-removebg-preview_hkgoem.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification h">
+            <div class="notification h" onClick={()=>{
+                setMuscle({name:'hamstrings',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497905/hamstrings_nwpqod-removebg-preview_brum3o.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Hamstrings</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497905/hamstrings_nwpqod-removebg-preview_brum3o.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification i">
+            <div class="notification i" onClick={()=>{
+                setMuscle({name:'glutes',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497904/gluteus_gn6mn8-removebg-preview_pffrsi.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Glutues</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497904/gluteus_gn6mn8-removebg-preview_pffrsi.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification j">
+            <div class="notification j" onClick={()=>{
+                setMuscle({name:'adductors',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/adductors_xlozk2-removebg-preview_pykaip.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Adductors</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/adductors_xlozk2-removebg-preview_pykaip.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification k">
+            <div class="notification k" onClick={()=>{
+                setMuscle({name:'Gastrocnemius',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/gastrocnemius_hudn3u-removebg-preview_n6eoca.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Gastrocnemius</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/gastrocnemius_hudn3u-removebg-preview_n6eoca.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification l">
+            <div class="notification l" onClick={()=>{
+                setMuscle({name:'abs',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/abs_eoeeem-removebg-preview_hckomn.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Abs</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/abs_eoeeem-removebg-preview_hckomn.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
          
-            <div class="notification m">
+            <div class="notification m" onClick={()=>{
+                setMuscle({name:'forearms',img:'https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/forearms_utxezj-removebg-preview_n6kvug.png'})
+                navigate('/exercise')
+            }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
                 <div class="notititle"><h3>Forearms</h3></div>
