@@ -165,7 +165,7 @@ img{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 16px;
   --gradient:#2eadff;
-  --color: #32a6ff
+  --color: #ffff
 }
 .notification>ion-icon{
   z-index: 100;
