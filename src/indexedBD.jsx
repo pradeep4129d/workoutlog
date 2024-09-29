@@ -7,7 +7,9 @@ const openDB = () => {
 
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
-      db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      }
     };
 
     request.onsuccess = (event) => {
@@ -22,27 +24,75 @@ const openDB = () => {
 
 export const addData = async (data) => {
   const db = await openDB();
-  const transaction = db.transaction(STORE_NAME, 'readwrite');
-  const store = transaction.objectStore(STORE_NAME);
-  store.add(data);
-  return transaction.complete;
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+
+    const request = store.add(data);
+
+    request.onsuccess = () => {
+      resolve(true); // Data added successfully
+    };
+
+    request.onerror = (event) => {
+      console.error("Add operation failed: ", event.target.error);
+      reject(event.target.error); // Handle error
+    };
+
+    transaction.oncomplete = () => {
+      console.log("Transaction completed.");
+    };
+
+    transaction.onerror = (event) => {
+      console.error("Transaction failed: ", event.target.error);
+      reject(event.target.error);
+    };
+  });
 };
 
 export const getData = async (id) => {
   const db = await openDB();
-  const transaction = db.transaction(STORE_NAME, 'readonly');
-  const store = transaction.objectStore(STORE_NAME);
   return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readonly');
+    const store = transaction.objectStore(STORE_NAME);
+    
     const request = store.get(id);
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
+
+    request.onsuccess = () => {
+      resolve(request.result || null); // Resolve with the data or null if not found
+    };
+
+    request.onerror = (event) => {
+      console.error("Get operation failed: ", event.target.error);
+      reject(event.target.error);
+    };
   });
 };
 
 export const deleteData = async (id) => {
   const db = await openDB();
-  const transaction = db.transaction(STORE_NAME, 'readwrite');
-  const store = transaction.objectStore(STORE_NAME);
-  store.delete(id);
-  return transaction.complete;
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+
+    const request = store.delete(id);
+
+    request.onsuccess = () => {
+      resolve(true); // Data deleted successfully
+    };
+
+    request.onerror = (event) => {
+      console.error("Delete operation failed: ", event.target.error);
+      reject(event.target.error);
+    };
+
+    transaction.oncomplete = () => {
+      console.log("Transaction completed.");
+    };
+
+    transaction.onerror = (event) => {
+      console.error("Transaction failed: ", event.target.error);
+      reject(event.target.error);
+    };
+  });
 };

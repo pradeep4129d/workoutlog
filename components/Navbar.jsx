@@ -6,8 +6,8 @@ export const Navbar = () => {
   return (
     <>
     <div className="shade"></div>
-    <div class="background" onClick={()=>{setOpened(opened?false:true)}}>
-            <button class={"menu__icon "+opened}>
+    <div className="background" onClick={()=>{setOpened(opened?false:true)}}>
+            <button className={"menu__icon "+opened}>
                 <span></span>
                 <span></span>
                 <span></span>

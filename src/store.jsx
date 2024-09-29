@@ -5,8 +5,11 @@ const MyContext = createContext();
 
 // Create a Provider component
 const MyProvider = ({ children }) => {
-  const [muscle, setMuscle] = useState({name:'',img:''});
-
+  const [muscle, setmuscle] = useState('');
+  const setMuscle=(data)=>{
+    setmuscle(data)
+    localStorage.setItem('muscle',data)
+  }
   return (
     <MyContext.Provider value={{ muscle, setMuscle }}>
       {children}
