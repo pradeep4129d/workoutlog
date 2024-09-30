@@ -6,6 +6,7 @@ import { All } from '../components/All'
 import { Plan } from '../components/Plan'
 import { Exercise } from '../components/Exercise'
 import { addData, getData } from './indexedBD'
+import { ViewExercise } from '../components/ViewExercise'
 
 function App() {
   const [ids, setIds] = useState(['chest','lats','biceps','triceps','anteriordelt','posteriordelt','traps','quads','hamstrings','gluteus','adductors','gastrocnemius','forearms']);
@@ -31,14 +32,7 @@ function App() {
         const id = ids[i];
         const data = {
           imgurl: imgurl[i],
-          exercises: [{
-              name: '',
-              sets: [{
-                  working: { weight: 0, reps: 0 },
-                  dropsets: [{ weight: 0, reps: 0 }]
-                }],
-              weightIncrement: 2.5
-            }], 
+          exercises: [], 
         };
         const result = await getData(id);
         if(result===null){
@@ -47,7 +41,7 @@ function App() {
       }
       const res1=await getData('routine')
         if(res1===null){
-          await addData({id:'routine',data:{name:'4-days Routine'}})
+          await addData({id:'routine',data:{name:'4-days Routine',day:[['chest','anteriordelt','abs'],['triceps','biceps','forearms'],['lats','traps','posteriordelt','forearms','abs'],['quads','hamstrings','adductors','glutues','gastrocnemius']]}})
         }
     };
     handleAddData()
@@ -59,7 +53,9 @@ function App() {
         <Route path='/' element={<Workout/>}/>
         <Route path='/all' element={<All/>}/>
         <Route path='/plan' element={<Plan/>}/>
-        <Route path='/exercise' element={<Exercise/>}/>
+        <Route path='/exercise' element={<Exercise/>}>
+            <Route path='/exercise/view' element={<ViewExercise/>}/>
+        </Route>
       </Routes>
     </>
   )

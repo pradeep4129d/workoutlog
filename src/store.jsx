@@ -8,7 +8,7 @@ const MyProvider = ({ children }) => {
   const [muscle, setmuscle] = useState('');
   const setMuscle=(data)=>{
     setmuscle(data)
-    localStorage.setItem('muscle',data)
+    sessionStorage.setItem('muscle',data)
   }
   return (
     <MyContext.Provider value={{ muscle, setMuscle }}>

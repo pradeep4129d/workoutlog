@@ -96,3 +96,31 @@ export const deleteData = async (id) => {
     };
   });
 };
+export const updateData = async (data) => {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+
+    const request = store.put(data); // Use put instead of add
+
+    request.onsuccess = () => {
+      resolve(true); // Data updated successfully
+    };
+
+    request.onerror = (event) => {
+      console.error("Update operation failed: ", event.target.error);
+      reject(event.target.error); // Handle error
+    };
+
+    transaction.oncomplete = () => {
+      console.log("Transaction completed.");
+    };
+
+    transaction.onerror = (event) => {
+      console.error("Transaction failed: ", event.target.error);
+      reject(event.target.error);
+    };
+  });
+};
+
