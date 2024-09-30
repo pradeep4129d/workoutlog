@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getData, updateData } from '../src/indexedBD'
+import { useNavigate } from 'react-router-dom'
 
 export const ViewExercise = (props) => {
     const [record,setRecord]=useState(props.data)
     const [field,setfield]=useState(false)
     const [name,setName]=useState('')
+    const [warning,setWarning]=useState('')
+    const navigate=useNavigate()
     useEffect(()=>{
         const getdata=async()=>{
             const result=await getData(record.id)
@@ -14,10 +17,12 @@ export const ViewExercise = (props) => {
       console.log('refreshed')
     },[field])
   return (
+    <>
     <div className='view'>
         <div className="heading">
-        <img src={props.data.data.imgurl} alt="" />
-        <h3>{props.data.id}</h3>
+            <ion-icon name="chevron-back-outline" onClick={()=>{navigate('/all')}}></ion-icon>
+            <img src={props.data.data.imgurl} alt="" />
+            <h3>{props.data.id}</h3>
         </div>
         <h3>Exercises</h3>
         {record &&<div className="exercises">
@@ -28,18 +33,27 @@ export const ViewExercise = (props) => {
                             <div className="e" key={index}>
                             <ion-icon name="barbell-sharp"></ion-icon><pre> </pre>
                                <p>{exercise.name}</p> 
+                               <div className="edit"><ion-icon name="ellipsis-vertical"></ion-icon></div>
                             </div>
                                 </>})}</>
             }
-            {field&& <div className="e" >
+            {field&& <div className={'e '+warning} >
                 <ion-icon name="barbell-sharp"></ion-icon>
-                <input type="text" name="" id="" placeholder='name...' onChange={(e)=>{setName(e.target.value)}} onBlur={()=>{
+                <input type="text" name="" id="" placeholder='name...' autoFocus onChange={(e)=>{setName(e.target.value)}} onBlur={()=>{
             if(field){
-                record.data.exercises.push({name:name,sets:[],weightIncrement:2.5})
-                updateData(record)
-                .then(() => console.log("Record updated successfully"))
-                .catch(error => console.error("Failed to update record: ", error));
-                setfield(false)
+                if(name===''){  
+                    setWarning('t')
+                    setName('')
+                }
+                else{
+                    setWarning('')
+                    record.data.exercises.push({name:name,sets:[],weightIncrement:2.5})
+                    setName('')
+                    updateData(record)
+                    .then(() => console.log("Record updated successfully"))
+                    .catch(error => console.error("Failed to update record: ", error));
+                    setfield(false)
+                }
             }
             }}/>
             </div>
@@ -52,5 +66,6 @@ export const ViewExercise = (props) => {
             </div>
         </div>}
     </div>
+    </>
   )
 }

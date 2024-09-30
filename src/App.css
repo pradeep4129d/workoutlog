@@ -71,7 +71,7 @@ button {
   transform: translateY(-11px) rotate(45deg);
 }
 .navs{
-  width: 200px;
+  width: 50px;
   height: 120px;
   position: fixed;
   bottom: 10px;
@@ -110,13 +110,13 @@ ion-icon{
   color: rgb(194, 194, 195);
 }
 .all.true{
-  left:20%;
+  left:-70%;
 }
 .workout.true{
   bottom: 60px;
 }
 .plan.true{
-  left: 80%;
+  left: 170%;
 }
 .all-tab{
   height: max-content;
@@ -204,48 +204,8 @@ img{
   justify-content: center;
   align-items: start;
 }
-.notification.a::after{
-  background:linear-gradient(180deg,#2eadff , #7e61ff) ;
-}
-.notification.b::after{
-  background:#7e61ff;
-}
-.notification.c::after{
-  background:linear-gradient(180deg, #7e61ff, #3fb950) ;
-}
-.notification.d::after{
-  background:#3fb950;
-}
-.notification.e::after{
-  background:linear-gradient(180deg, #3fb950, #33b3ae) ;
-}
-.notification.f::after{
-  background: #33b3ae ;
-}
-.notification.g::after{
-  background:linear-gradient(180deg, #33b3ae, #f778ba) ;
-}
-.notification.h::after{
-  background:#f778ba ;
-}
-.notification.i::after{
-  background:linear-gradient(180deg, #f778ba, #2eadff) ;
-}
-.notification.j::after{
-  background:#2eadff;
-}
-.notification.k::after{
-  background:linear-gradient(180deg, #2eadff, #7e61ff);
-}
-.notification.l::after{
-  background:#7e61ff;
-}
-.notification.m::after{
-  background:linear-gradient(180deg, #7e61ff, #3fb950);
-}
-
-.notification:hover:after {
-  transform: translateX(0.15rem)
+.notification::after{
+  background-color: var(--gradient);
 }
 
 .notititle {
@@ -324,9 +284,12 @@ img{
   color: white;
 }
 .heading>img{
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   border-radius: 100%;
+}
+.heading>h3{
+  margin-top: -10px;
 }
 .exercises{
   display: flex;
@@ -340,6 +303,12 @@ img{
   align-items: center;
   width: 100%;
   height: max-content;
+  position: relative;
+}
+.heading>ion-icon{
+  position: absolute;
+  left:10px;
+  top: 20px;
 }
 .e{
   display: flex;
@@ -352,6 +321,10 @@ img{
   font-size: 16px;
   margin-top: 7px;
   height: 50px;
+  position: relative;
+}
+.e.t{
+  border: 1px solid rgb(22, 245, 22);
 }
 .e>input{
   background-color: transparent;
@@ -362,4 +335,9 @@ img{
 }
 .e>input:focus{
   border: none;
+}
+.edit{
+  position: absolute;
+  right: 5px;
+  top:12px;
 }

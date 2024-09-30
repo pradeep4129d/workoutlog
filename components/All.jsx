@@ -52,16 +52,16 @@ return (
             }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
-                <div class="notititle"><h3>Anterior Delts</h3></div>
+                <div class="notititle"><h3>Anterior Delt</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497903/anterior_delts_plsncu-removebg-preview_onvaym.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
-            <div class="notification e" onClick={()=>{
+            <div class="notification" onClick={()=>{
                 setMuscle('posteriordelt')
                 navigate('/exercise')
             }}>
                 <div class="notiglow"></div>
                 <div class="notiborderglow"></div>
-                <div class="notititle"><h3>Posterior delts</h3></div>
+                <div class="notititle"><h3>Posterior Delt</h3></div>
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/posterior_delt_o0bdfn-removebg-preview_uearv7.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
             <div class="notification f" onClick={()=>{
@@ -92,7 +92,7 @@ return (
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497905/hamstrings_nwpqod-removebg-preview_brum3o.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
             <div class="notification i" onClick={()=>{
-                setMuscle('glutes')
+                setMuscle('gluteus')
                 navigate('/exercise')
             }}>
                 <div class="notiglow"></div>
