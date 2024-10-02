@@ -6,11 +6,16 @@ export const ViewExercise = (props) => {
     const [record,setRecord]=useState(props.data)
     const [field,setfield]=useState(false)
     const [name,setName]=useState('')
+    const [index,setIndex]=useState(0)
     const [warning,setWarning]=useState('')
     const [edit,setEdit]=useState(false)
     const navigate=useNavigate()
     const [refresh,setRefresh]=useState(false)
     useEffect(()=>{
+        const editor=document.getElementsByClassName('editor')[index]
+        if(editor){
+            editor.style.display='none'
+        }
         const getdata=async()=>{
             const result=await getData(record.id)
             setRecord(result)
@@ -33,13 +38,14 @@ export const ViewExercise = (props) => {
                 record.data.exercises.map((exercise,index)=>{
                         return  <>
                             <div className="e" key={index}>
-                                <div className="editor" tabIndex={0} onBlur={()=>{
+                                <div className="editor" tabIndex={0} autoFocus onBlur={()=>{
                                     const editor=document.getElementsByClassName('editor')[index]
                                     if (editor) {
                                             editor.style.display = 'none';
                                         } 
                                 }} key={index} id={'l'+index}>
-                                    <div className="editbtn"><input type="text" name="" id="" autoFocus placeholder='Rename..' onBlur={(e)=>{
+                                    <div className="editbtn">
+                                        <input type="text" autoFocus placeholder='Rename..' onBlur={(e)=>{
                                         const rename=e.target.value
                                         if(rename!==''){
                                             const updatedata=record
@@ -48,8 +54,7 @@ export const ViewExercise = (props) => {
                                             .then(() => console.log("Record updated successfully"))
                                             .catch(error => console.error("Failed to update record: ", error));
                                             setRefresh(refresh?false:true)
-                                        }
-                                    }}/><ion-icon name="create"></ion-icon></div> <hr />
+                                        }}}/><ion-icon name="create"></ion-icon></div> <hr />
                                     <div className="delete" onClick={()=>{
                                         const updatedata=record
                                         updatedata.data.exercises.splice(index,1)
@@ -62,7 +67,8 @@ export const ViewExercise = (props) => {
                                 <ion-icon name="barbell-sharp"></ion-icon><pre> </pre>
                                 <p>{exercise.name}</p> 
                                 <div onClick={()=>{
-                                    const editor=document.getElementById('l'+index)
+                                    setIndex(index)
+                                    const editor=document.getElementsByClassName('editor')[index]
                                     if (editor) {
                                         if (editor.style.display === 'none' || editor.style.display === '') {
                                           editor.style.display = 'block'; // Show editor
