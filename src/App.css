@@ -323,8 +323,48 @@ img{
   height: 50px;
   position: relative;
 }
+hr{
+  border:  1px solid #7b7b7b;
+}
+.editor{
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 200px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  height: max-content;
+  border: 1px solid #bcbcbd;
+  border-radius: 10px;
+  z-index:101;
+  background: #12181f;
+  display: none;
+  outline: none;
+}
+.editbtn>input{
+  background-color: transparent;
+  border: none;
+  padding: 5px 0px 5px 0px;
+  color: #ffff;
+  font-size: 16px;
+  outline: none;
+  width: 165px;
+}
+.delete,.delete>ion-icon{
+  color: rgb(250, 94, 94);
+}
+.editbtn,.editbtn>ion-icon,hr{
+  color:rgb(200, 200, 202);
+}
+.editbtn,.delete{
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
 .e.t{
-  border: 1px solid rgb(22, 245, 22);
+  border: 1px solid rgb(254, 49, 49);
 }
 .e>input{
   background-color: transparent;
@@ -332,6 +372,7 @@ img{
   padding: 20px 10px 20px 10px;
   color: #ffff;
   font-size: 17.5px;
+  outline: none;
 }
 .e>input:focus{
   border: none;
