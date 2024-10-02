@@ -295,7 +295,6 @@ img{
   display: flex;
   flex-direction: column;
 }
-
 .heading{
   display: flex;
   flex-direction: column;
@@ -326,10 +325,12 @@ img{
 hr{
   border:  1px solid #7b7b7b;
 }
+body{
+  position: relative;
+}
 .editor{
   position: absolute;
   right: 0;
-  top: 100%;
   width: 200px;
   padding-left: 10px;
   padding-right: 10px;
@@ -340,7 +341,6 @@ hr{
   border-radius: 10px;
   z-index:101;
   background: #12181f;
-  display: none;
   outline: none;
 }
 .editbtn>input{
