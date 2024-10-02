@@ -322,6 +322,50 @@ img{
   height: 50px;
   position: relative;
 }
+.show>.e{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.show>.e>input{
+  width: 20px;
+  padding: 0;
+}
+.show>.e>input:first-child{
+  color: rgb(29, 255, 29);
+}
+.show>.e>input:last-of-type{
+  color: rgb(255, 183, 48);
+}
+.e>span:first-of-type{
+  color:rgb(29, 255, 29) ;
+}
+.e>span:last-of-type{
+  color:rgb(255, 183, 48);
+}
+.rep,.rep>input{
+  color: rgb(29, 255, 29);
+}
+.rep>input,.weight>input{
+  width: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+.weight>input{
+  color: rgb(255,183,48);
+  width: 25px;
+}
+.e.a{
+  justify-content: start;
+}
+.weight{
+  color: rgb(255, 183, 48);
+}
+.load{
+  color: rgb(255, 112, 112);
+}
 hr{
   border:  1px solid #7b7b7b;
 }
