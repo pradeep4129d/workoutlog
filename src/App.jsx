@@ -9,7 +9,7 @@ import { addData, getData } from './indexedBD'
 import { ViewExercise } from '../components/ViewExercise'
 
 function App() {
-  const [ids, setIds] = useState(['chest','lats','biceps','triceps','anteriordelt','posteriordelt','traps','quads','hamstrings','gluteus','adductors','gastrocnemius','forearms']);
+  const [ids, setIds] = useState(['chest','lats','triceps','biceps','anteriordelt','posteriordelt','traps','quads','hamstrings','gluteus','adductors','gastrocnemius','abs','forearms']);
   const [imgurl,setImageUrl]=useState([
     "https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/chest-1_ifcuvs-removebg-preview_gvnhb2.png",
     "https://res.cloudinary.com/dutz70yxy/image/upload/v1727497907/lats_lrkcif-removebg-preview_wvrdmf.png",      

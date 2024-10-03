@@ -207,7 +207,23 @@ img{
 .notification::after{
   background-color: var(--gradient);
 }
-
+.e-info{
+  font-size: 14px;
+  letter-spacing: 1px;
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  top: 240px;
+  color: #2eff58;
+}
+.e-info>input{
+  width: 23px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #2eff58;
+}
 .notititle {
   color: var(--color);
   padding: 0.65rem 0.25rem 0.4rem 1.25rem;

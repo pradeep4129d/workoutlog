@@ -110,7 +110,7 @@ return (
                 <img src="https://res.cloudinary.com/dutz70yxy/image/upload/v1727497902/adductors_xlozk2-removebg-preview_pykaip.png" alt="" />                <ion-icon name="chevron-forward-outline"></ion-icon>
             </div>
             <div class="notification k" onClick={()=>{
-                setMuscle('Gastrocnemius')
+                setMuscle('gastrocnemius')
                 navigate('/exercise')
             }}>
                 <div class="notiglow"></div>
