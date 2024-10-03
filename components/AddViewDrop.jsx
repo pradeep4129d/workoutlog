@@ -25,7 +25,7 @@ return (
     {enable && <div className="editor" style={{top:coordinates+5}} tabIndex={0}>
        <div className="delete" onClick={()=>{
             const updatedata=props.data.data
-            updatedata.exercises[index1].load=updatedata.exercises[index1].sets[index2].load-(updatedata.exercises[index1].sets[index2].dropset[index3].weight*updatedata.exercises[index1].sets[index2].dropset[index3].reps)
+            updatedata.exercises[index1].sets[index2].load=updatedata.exercises[index1].sets[index2].load-(updatedata.exercises[index1].sets[index2].dropset[index3].weight*updatedata.exercises[index1].sets[index2].dropset[index3].reps)
             updatedata.exercises[index1].sets[index2].dropset.splice(index3,1)
             updateData(updatedata)
             .then(() => console.log("Record updated successfully"))
