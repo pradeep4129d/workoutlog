@@ -21,7 +21,7 @@ export const AddViewDrop = (props) => {
     },[refresh])
 return (
     <>
-     <div className="tload">Total {props.data.data.exercises[index1].load} Kg</div>
+     <div className="tload">Total {props.data.data.exercises[index1].sets[index2].load} Kg</div>
     {enable && <div className="editor" style={{top:coordinates+5}} tabIndex={0}>
        <div className="delete" onClick={()=>{
             const updatedata=props.data.data
@@ -60,7 +60,7 @@ return (
                 <input type="number" name="" id="ds" onChange={(e)=>{setAtt({...att,weight:e.target.value})}} onBlur={()=>{
                                 props.data.data.exercises[index1].sets[index2].dropset.push(att)
                                 setAtt({weight:0,reps:0})
-                                props.data.data.exercises[index1].load=props.data.data.exercises[index1].load+att.weight*att.reps
+                                props.data.data.exercises[index1].sets[index2].load=props.data.data.exercises[index1].sets[index2].load+att.weight*att.reps
                                 updateData({id:props.data.id,data:props.data.data   })
                                 .then(() => console.log("Record updated successfully"))
                                 .catch(error => console.error("Failed to update record: ", error));

@@ -98,7 +98,7 @@ export const ViewExercise = (props) => {
                             const weight=e.target.value
                             if(weight){
                                 record.data.exercises[index].sets[index2].working.weight=weight
-                                record.data.exercises[index].load=record.data.exercises[index].sets[index2].working.weight*record.data.exercises[index].sets[index2].working.reps
+                                record.data.exercises[index].sets[index2].load=record.data.exercises[index].sets[index2].working.weight*record.data.exercises[index].sets[index2].working.reps
                                 updateData(record)
                                 .then(() => console.log("Record updated successfully"))
                                 .catch(error => console.error("Failed to update record: ", error));
