@@ -5,9 +5,12 @@ export const AddViewDrop = (props) => {
     const [field,setField]=useState(false)
     const [att,setAtt]=useState({weight:0,reps:0})
     const [index1,index2]=props.data.index
+<<<<<<< HEAD
     const [coordinates,setCoordinates]=useState(0)
     const [enable,setEnable]=useState(false)
     const [index3,setIndex3]=useState(0)
+=======
+>>>>>>> 2664acc1192c2b7dbc4715af24d79bdfd90ce9ff
     console.log(index1)
     const [refresh,setRefresh]=useState(false)
     useEffect(()=>{
@@ -21,6 +24,7 @@ export const AddViewDrop = (props) => {
     },[refresh])
 return (
     <>
+<<<<<<< HEAD
      <div className="tload">Total {props.data.data.exercises[index1].load} Kg</div>
     {enable && <div className="editor" style={{top:coordinates+5}} tabIndex={0}>
        <div className="delete" onClick={()=>{
@@ -45,22 +49,39 @@ return (
                                     setEnable(enable?false:true)
                                     setCoordinates(e.clientY)
                         }} className="edit"><ion-icon name="ellipsis-vertical"></ion-icon></div>
+=======
+        {props.data.data.exercises[index1].sets[index2].dropset.length>0 && props.data.data.exercises[index1].sets[index2].dropset.map((drop,index)=>{
+            return <>
+                <div className="e" >
+                        <div className='rep'>{props.data.data.exercises[index1].sets[index2].dropset.reps} reps</div>
+                        <div className='weight'>{props.data.data.exercises[index1].sets[index2].dropset.weight} Kg</div>
+                        <div className='load'>{props.data.data.exercises[index1].sets[index2].dropset.reps*props.data.data.exercises[index1].sets[index2].dropset.weight} kg Load</div>
+>>>>>>> 2664acc1192c2b7dbc4715af24d79bdfd90ce9ff
                 </div>
                     </>
         })}
         {field&& <div className={'e'} >
             <div className='rep'>
                 <input type="number" name="" id="" autoFocus onChange={(e)=>{setAtt({...att,reps:e.target.value})}} onblur={()=>{
+<<<<<<< HEAD
                                 const wt=document.getElementById('ds')
+=======
+                                const wt=document.getElementById('wt')
+>>>>>>> 2664acc1192c2b7dbc4715af24d79bdfd90ce9ff
                                 if(wt){
                                     wt.focus()
                                 }
                 }}/> reps</div>
             <div className='weight'>
+<<<<<<< HEAD
                 <input type="number" name="" id="ds" onChange={(e)=>{setAtt({...att,weight:e.target.value})}} onBlur={()=>{
                                 props.data.data.exercises[index1].sets[index2].dropset.push(att)
                                 setAtt({weight:0,reps:0})
                                 props.data.data.exercises[index1].load=props.data.data.exercises[index1].load+att.weight*att.reps
+=======
+                <input type="number" name="" id="wt" onChange={(e)=>{setAtt({...att,reps:e.target.value})}} onBlur={()=>{
+                                props.data.data.exercises[index1].sets[index2].dropset.push(att)
+>>>>>>> 2664acc1192c2b7dbc4715af24d79bdfd90ce9ff
                                 updateData({id:props.data.id,data:props.data.data   })
                                 .then(() => console.log("Record updated successfully"))
                                 .catch(error => console.error("Failed to update record: ", error));
