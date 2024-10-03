@@ -21,9 +21,9 @@ export const AddViewDrop = (props) => {
     },[refresh])
 return (
     <>
-     <div className="tload">Total {props.data.data.exercises[index1].sets[index2].load} Kg</div>
+    <div className="tload">Total {props.data.data.exercises[index1].sets[index2].load} Kg</div>
     {enable && <div className="editor" style={{top:coordinates+5}} tabIndex={0}>
-       <div className="delete" onClick={()=>{
+        <div className="delete" onClick={()=>{
             const updatedata=props.data.data
             updatedata.exercises[index1].sets[index2].load=updatedata.exercises[index1].sets[index2].load-(updatedata.exercises[index1].sets[index2].dropset[index3].weight*updatedata.exercises[index1].sets[index2].dropset[index3].reps)
             updatedata.exercises[index1].sets[index2].dropset.splice(index3,1)

@@ -41,7 +41,8 @@ function App() {
       }
       const res1=await getData('routine')
         if(res1===null){
-          await addData({id:'routine',data:{name:'4-days Routine',day:[['chest','anteriordelt','abs'],['triceps','biceps','forearms'],['lats','traps','posteriordelt','forearms','abs'],['quads','hamstrings','adductors','glutues','gastrocnemius']]}})
+          const date=new Date(2024,9,3);
+          await addData({id:'routine',data:{name:'4-days Routine',day:[['chest','anteriordelt','abs'],['triceps','biceps','forearms'],['lats','traps','posteriordelt','forearms','abs'],['quads','hamstrings','adductors','glutues','gastrocnemius']],startDate:date,completed:false,prevday:3}})
         }
     };
     handleAddData()
