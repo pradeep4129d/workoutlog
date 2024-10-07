@@ -448,49 +448,281 @@ body{
   right: 5px;
   top:12px;
 }
-/* From Uiverse.io by codebykay101 */ 
 .container {
   position: relative;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+  margin-top: 0px;
+  padding-bottom: 40px;
+  border-radius: 10px;
 }
-
+/* From Uiverse.io by purplemanta6754 */ 
+.glass button {
+  position: absolute;
+  bottom: 10px;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: #fff;
+  -webkit-clip-path: polygon(
+    0 0,
+    0 0,
+    100% 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0 100%
+  );
+  clip-path: polygon(
+    0 0,
+    0 0,
+    100% 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0 100%
+  );
+  height: 40px;
+  font-size: 0.7rem;
+  line-height: 14px;
+  letter-spacing: 1.2px;
+  transition: 0.2s 0.1s;
+  background-image: linear-gradient(90deg,#0d1117,#313b46);
+  border: 0 solid;
+  overflow: hidden;
+}
 .container .glass {
   position: relative;
-  width: 150px;
-  height: 170px;
-  background: linear-gradient(#fff2, transparent);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 60%;
+  height: 200px;
+  border: 1px solid #36393c;
   box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.5s;
   border-radius: 10px;
-  margin: 0 -45px;
   backdrop-filter: blur(10px);
   transform: rotate(calc(var(--r) * 1deg));
 }
-
-.container:hover .glass {
-  transform: rotate(0deg);
-  margin: 0 10px;
+.glass{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 .container .glass::before {
   content: attr(data-text);
   position: absolute;
-  bottom: 0;
+  top: 0;
   width: 100%;
   height: 40px;
-  background: rgba(255, 255, 255, 0.05);
+  background:#12181f;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
 }
-.container .glass svg {
-  font-size: 2.5em;
-  fill: #fff;
+.container .glass img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+.card * {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.card{
+  width: 88vw;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.card .teams {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.card .teams > span {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  font-size: 16px;
+  text-wrap: nowrap;
+}
+.card .teams .team-name-info {
+  text-wrap: nowrap;
+  color: #c4c3c3;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+.card .teams .team-home,
+.card .teams .team-away {
+  padding: 15px 0px;
+  position: relative;
+  overflow: hidden;
+}
+.card .teams .team-away {
+  transform: skew(-41deg, 0deg);
+  border-radius: 10px 10px 30px 10px;
+}
+.card .teams .team-home {
+  border-radius: 10px 10px 10px 30px;
+  transform: skew(41deg, 0deg);
+}
+.card .teams .team-home::after {
+  position: absolute;
+  top: -3px;
+  background: #2d3b4a;
+  content: "";
+  height: 23px;
+  border-radius: 27px;
+  left: -20px;
+  filter: blur(2px);
+  transform: rotate(208deg);
+  width: 20px;
+  box-shadow: 0px 0px 32px #455668;
+}
+.card .teams .team-home::before {
+  position: absolute;
+  bottom: -15px;
+  background: #404a54;
+  content: "";
+  height: 17px;
+  border-radius: 80px;
+  right: 0;
+  filter: blur(1px);
+  transform: translate(-50%, 0%);
+  width: 60%;
+  box-shadow: 0px 0px 32px #536b86;
+}
+.card .teams .team-away::after {
+  position: absolute;
+  top: -3px;
+  background:transparent ;
+  content: "";
+  height: 23px;
+  border-radius: 27px;
+  right: -20px;
+  filter: blur(2px);
+  transform: rotate(208deg);
+  width: 20px;
+  box-shadow: 0px 0px 32px #607080;
+}
+.card .teams .team-away::before {
+  position: absolute;
+  bottom: -15px;
+  background: #404a54;
+  content: "";
+  height: 17px;
+  border-radius: 80px;
+  left: 0;
+  filter: blur(1px);
+  transform: translate(50%, 0%);
+  width: 60%;
+  box-shadow: 0px 0px 32px #536b86;
+}
+
+.card .teams .team-home .team-name-info {
+  transform: skew(-41deg, 0);
+}
+.card .teams .team-away .team-name-info {
+  transform: skew(41deg, 0);
+}
+.card .event-scoreboard .event-score-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  border-radius: 10px;
+  width: fit-content;
+  background: transparent;
+  margin: 10px 0;
+}
+.event-current-time{
+  display: flex;
+  flex-direction: row;
+  width: 250%;
+  justify-content: space-between;
+  font-size: 15px;
+  position: absolute;
+  bottom: 10px;
+}
+
+.card .event-scoreboard .event-score-container .score-container {
+  font-size: 24px;
+  color: #bcbcbc;
+}
+.card .event-scoreboard .event-score-container .current-time-container {
+  font-size: 17px;
+  width: 100%;
+  font-family: "SegoeUI";
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card
+  .event-scoreboard
+  .event-score-container
+  .current-time-container
+  .event-clock {
+  margin-right: 5px;
+  color: #a8a6a6;
+}
+.event-scoreboard{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.event-score-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.e-name{
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.set-container p{
+  font-size: 18px;
+}
+.set-container .ws{
+  font-size: 16px;
+  color: #b3b4b4;
+}
+.e.r{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.t-rep{
+  font-size: 14px;
+  letter-spacing: 1px;
+  position: absolute;
+  z-index: 10;
+  right: 100px;
+  top: 240px;
+  color: #2eff58;
+}
+.t-rep>input{
+  width: 23px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #2eff58;
 }

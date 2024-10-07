@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { getData } from '../src/indexedBD'
 import Cards from './Cards'
+import { useStore } from '../src/store'
+import { StartExercise } from './StartExercise'
+import { json } from 'react-router-dom'
 
 export const Workout = () => {
   const [workout,setWorkout]=useState([])
+  const [data,setData]=useState([])
+  const {showCard}=useStore()
   useEffect(()=>{
     const getday=async()=>{
       const result=await getData('routine')
@@ -14,15 +19,21 @@ export const Workout = () => {
       const Workout = result.data.day[ daysDifference % result.data.day.length]
       console.log(Workout)
       setWorkout(Workout)
+      const info=[]
+      for(let i=0;i<Workout.length;i++){
+        info.push({name:Workout[i],completed:false,resume:false,resumedIndex:0})
+      }
+      if(!sessionStorage.getItem('info')){
+        sessionStorage.setItem('info',JSON.stringify(info))
+      }
+      sessionStorage.setItem('curmuscle',null)
     }
     getday()
   },[])
   return (
     <div className='routine'>
-        <p>Today's Routine</p>
-        <div className="routine-box">
-          <Cards data={workout}/>
-        </div>
+        {showCard && <div className="routine-box"><p>Today's Routine</p><Cards data={workout}/></div>}
+        {!showCard && <StartExercise/>}
     </div>
   )
 }

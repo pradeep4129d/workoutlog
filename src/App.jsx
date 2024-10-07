@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import { Workout } from '../components/Workout'
+import { Workout } from '../components/Workout.jsx'
 import { All } from '../components/All'
 import { Plan } from '../components/Plan'
 import { Exercise } from '../components/Exercise'

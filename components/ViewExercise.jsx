@@ -12,6 +12,7 @@ export const ViewExercise = (props) => {
     const [index3,setIndex3]=useState(0)
     const [warning,setWarning]=useState('')
     const [incre,setIncre]=useState(false)
+    const [rep,setRep]=useState(false)
     const [coordinates,setCoordinates]=useState(0)
     const [prop,setProp]=useState({weight:0,reps:0})
     const navigate=useNavigate()
@@ -94,7 +95,7 @@ export const ViewExercise = (props) => {
                                 if(wt){
                                     wt.focus()
                                 }
-                           }}/></>:record.data.exercises[index].sets[index2].working.reps} reps</div>
+                            }}/></>:record.data.exercises[index].sets[index2].working.reps} reps</div>
                         <div className='weight'>{edit?<><input type="number" name="" id="wt" onBlur={(e)=>{
                             const weight=e.target.value
                             if(weight){
@@ -124,7 +125,7 @@ export const ViewExercise = (props) => {
             <div className="e-info" onClick={()=>{
                 setIncre(true)
             }}>
-                + {incre?<><input type="text" name="" id="" autoFocus onBlur={(e)=>{
+                + {incre?<><input type="number" name="" id="" autoFocus onBlur={(e)=>{
                         const i=e.target.value
                         if(i){
                             record.data.exercises[index].weightIncrement=i
@@ -135,6 +136,21 @@ export const ViewExercise = (props) => {
                                 setRefresh(refresh?false:true)
                         }
                 }}/></>:record.data.exercises[index].weightIncrement} Kg
+            </div>
+            <div className="t-rep" onClick={()=>{
+                setRep(true)
+            }}>
+                {rep?<><input type='number' name="" id="" autoFocus onBlur={(e)=>{
+                        const i=e.target.value
+                        if(i){
+                            record.data.exercises[index].targetReps=i
+                                updateData(record)
+                                .then(() => console.log("Record updated successfully"))
+                                .catch(error => console.error("Failed to update record: ", error));
+                                setRep(false)
+                                setRefresh(refresh?false:true)
+                        }
+                }}/></>:record.data.exercises[index].targetReps} reps
             </div>
             <div className="set-container">
                 {record.data.exercises[index].sets.map((set,index)=>{
@@ -193,7 +209,7 @@ export const ViewExercise = (props) => {
                 }
                 else{
                     setWarning('')
-                    record.data.exercises.push({name:name,sets:[],weightIncrement:2.5})
+                    record.data.exercises.push({name:name,sets:[],weightIncrement:2.5,targetReps:12})
                     setName('')
                     updateData(record)
                     .then(() => console.log("Record updated successfully"))

@@ -1,27 +1,43 @@
 import React, { useEffect, useState } from 'react'
 import { getData } from '../src/indexedBD'
+import { useStore } from '../src/store';
 
 const Cards = (props) => {
-    const [urls,setUrls]=useState([])
-    useEffect(()=>{
-        const getUrl=async(id)=>{
-            
+    const [data, setData] = useState([]);
+    const [Info,setInfo]=useState([])
+    const {setShowCard}=useStore()
+    const [r,setr]=useState(['-15','5','25'])
+    useEffect(() => {
+        const info=JSON.parse(sessionStorage.getItem('info'))
+        setInfo(info)
+    const fetchData = async () => {
+        const resultArray = [];
+        for (let i = 0; i < props.data.length && i < 3; i++) {
+        const result = await getData(props.data[i]); 
+        resultArray.push({
+            text: props.data[i],
+            imgurl: result.data.imgurl
+        });
         }
-        getUrl()
-    },[])
-    return (
-    <div className="container">
-        <div data-text="Github" style={{ '--r': '-15' }} className="glass">
-            <img src={urls[0]} alt="" />
+        setData(resultArray); 
+    };
+    fetchData();
+    }, [props.data]);
+
+return (
+    <div className="Card">
+        {data.map((item, index) => (
+            <div className="container" key={index}>
+                <div  data-text={item.text} className="glass">
+                    <img src={item.imgurl} alt={item.text} />
+                    <button className="button" onClick={()=>{
+                        sessionStorage.setItem('curmuscle',index)
+                        setShowCard(false)}}>{Info[index].completed?<>completed</>:Info[index].resume?<>resume</>:<>start</>}</button>
+                </div>
         </div>
-        <div data-text="Code" style={{ '--r': '5' }} className="glass">
-        <img src={urls[1]} alt="" />
-        </div>
-        <div data-text="Earn" style={{ '--r': '25' }} className="glass">
-        <img src={urls[2]} alt="" />
-        </div>
+        ))}
     </div>
-)
+    );
 }
 
 export default Cards
