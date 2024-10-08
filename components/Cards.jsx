@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getData } from '../src/indexedBD'
+import { getData,updateData } from '../src/indexedBD'
 import { useStore } from '../src/store';
 
 const Cards = (props) => {
@@ -30,7 +30,9 @@ return (
                 <div  data-text={item.text} className="glass">
                     <img src={item.imgurl} alt={item.text} />
                     <button className="button" onClick={()=>{
-                        sessionStorage.setItem('curmuscle',index)
+                        updateData({id:'curmuscle',data:index})
+                        .then(() => console.log("Record updated successfully"))
+                        .catch(error => console.error("Failed to update record: ", error));
                         setShowCard(false)}}>{Info[index].completed?<>completed</>:Info[index].resume?<>resume</>:<>start</>}</button>
                 </div>
         </div>

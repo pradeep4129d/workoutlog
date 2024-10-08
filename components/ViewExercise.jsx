@@ -5,6 +5,7 @@ import { AddViewDrop } from './AddViewDrop'
 
 export const ViewExercise = (props) => {
     const [record,setRecord]=useState(props.data)
+    const [attrs,setAttrs]=useState({weight:0,reps:0})
     const [field,setfield]=useState(false)
     const [name,setName]=useState('')
     const [index,setIndex]=useState(0)
@@ -84,27 +85,25 @@ export const ViewExercise = (props) => {
                 <hr />
                     <p>Working Set</p>
                     <div className="e" >
-                        <div className='rep'>{edit?<><input type="number" name="" id="" autoFocus onBlur={(e)=>{
-                            const reps=e.target.value
-                            if(reps){
-                                record.data.exercises[index].sets[index2].working.reps=reps
-                                updateData(record)
-                                .then(() => console.log("Record updated successfully"))
-                                .catch(error => console.error("Failed to update record: ", error));}
+                        <div className='rep'>{edit?<><input type="number" name="" id="" onChange={(e)=>{setAttrs({...attrs,reps:e.target.value})}} autoFocus onBlur={(e)=>{
                                 const wt=document.getElementById('wt')
                                 if(wt){
                                     wt.focus()
                                 }
                             }}/></>:record.data.exercises[index].sets[index2].working.reps} reps</div>
-                        <div className='weight'>{edit?<><input type="number" name="" id="wt" onBlur={(e)=>{
-                            const weight=e.target.value
-                            if(weight){
-                                record.data.exercises[index].sets[index2].working.weight=weight
-                                record.data.exercises[index].sets[index2].load=record.data.exercises[index].sets[index2].working.weight*record.data.exercises[index].sets[index2].working.reps
+                        <div className='weight'>{edit?<><input type="number" name="" id="wt" onChange={(e)=>{setAttrs({...attrs,weight:e.target.value})}} onBlur={(e)=>{
+                            if(attrs.weight<record.data.exercises[index].sets[index2].working.weight || attrs.reps<record.data.exercises[index].sets[index2].working.reps){
+                                const diffload=record.data.exercises[index].sets[index2].load-(attrs.weight*attrs.reps)
+                                record.data.exercises[index].sets[index2].load-=diffload
+                            }else{
+                                const diffload=(attrs.weight*attrs.reps)-record.data.exercises[index].sets[index2].load
+                                record.data.exercises[index].sets[index2].load+=diffload
+                            }
+                                record.data.exercises[index].sets[index2].working.weight=attrs.weight
+                                record.data.exercises[index].sets[index2].working.reps=attrs.reps
                                 updateData(record)
                                 .then(() => console.log("Record updated successfully"))
                                 .catch(error => console.error("Failed to update record: ", error));
-                            }
                             setRefresh(refresh?false:true)
                                 setEdit(false)
                         }} /></>:record.data.exercises[index].sets[index2].working.weight} Kg</div>

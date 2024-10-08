@@ -21,13 +21,16 @@ export const Workout = () => {
       setWorkout(Workout)
       const info=[]
       for(let i=0;i<Workout.length;i++){
-        info.push({name:Workout[i],completed:false,resume:false,resumedIndex:0})
+        info.push({name:Workout[i],completed:false,resume:false,resumedSetIndex:0})
       }
       const result1 = await getData('info');
         if(result1===null){
           await addData({ id:'info', data:info});
         }
-      sessionStorage.setItem('curmuscle',null)
+      const result2=await getData('curmuscle')
+      if(result2===null){
+        await addData({ id:'curmuscle', data:0});
+      }
     }
     getday()
   },[])

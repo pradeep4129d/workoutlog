@@ -12,37 +12,41 @@ export const StartExercise = () => {
     const [setIndex,setSetIndex]=useState(0)
     const [img,setImg]=useState('')
     useEffect(()=>{
-        const setindex=sessionStorage.getItem('setindex')
-        if(setindex){
-            setSetIndex(setindex)
-        }else{
-            sessionStorage.setItem('setindex',setIndex)
+        const getInfos=async()=>{
+            const result=await getData('info')
+            if(result){
+                setInfo(result.data)
+            }
+            const result2=await getData('curmuscle')
+            if(result2){
+                setCurExercise(result2.data)
+            }
+            if(Info.length){
+                setSetIndex(Info[curexercise].resumedSetIndex)
+            }
         }
-        const currindex=sessionStorage.getItem('curmuscle')
-        if(currindex){
-            setCurExercise(currindex)}
-        const index=sessionStorage.getItem('curmuscle')
-        const info=JSON.parse(sessionStorage.getItem('info'))
-        setInfo(info)
+        getInfos()
+        
+    },[refresh])
+    useEffect(()=>{
         const getdata=async()=>{
-            const result = await getData(info[index].name)
+            const result = await getData(Info[curexercise].name)
             if(result){
                 console.log(result)
                 setImg(result.data.imgurl)
                 setExercises(result.data.exercises)
-                if(result.data.exercises[curexercise].targetReps===Number(result.data.exercises[curexercise].sets[setindex].working.reps)){
-                    setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:(Number(result.data.exercises[curexercise].sets[setindex].working.weight)+result.data.exercises[curexercise].weightIncrement)*5+Number(result.data.exercises[curexercise].sets[setindex].working.weight)*(result.data.exercises[curexercise].targetReps-5)})
-                    setAttrs({weight:Number(result.data.exercises[curexercise].sets[setIndex].working.weight)+result.data.exercises[curexercise].weightIncrement,reps:5})
+                if(result.data.exercises[curexercise].targetReps===Number(result.data.exercises[curexercise].sets[setIndex].working.reps)){
+                    setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:(Number(result.data.exercises[curexercise].sets[setIndex].working.weight)+result.data.exercises[curexercise].weightIncrement)*5+Number(result.data.exercises[curexercise].sets[setIndex].working.weight)*(result.data.exercises[curexercise].targetReps-5)})
+                    setAttrs({weight:Number(result.data.exercises[curexercise].sets[setIndex].working.weight)+Number(result.data.exercises[curexercise].weightIncrement),reps:5})
                 }
                 else{
                     setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:Number(result.data.exercises[curexercise].weightIncrement)+result.data.exercises[curexercise].sets[setIndex].load})
                     setAttrs({weight:Number(result.data.exercises[curexercise].sets[setIndex].working.weight),reps:Number(result.data.exercises[curexercise].sets[setIndex].working.reps)+1})
                 }
             }
-            console.log(load,attrs)
         }
-        getdata()
-    },[refresh])
+        if(Info.length){getdata()}
+    },[Info])
 return (
     <div className='start-e'>
         <div class="card">
