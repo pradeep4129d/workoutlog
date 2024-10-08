@@ -7,10 +7,10 @@ const Cards = (props) => {
     const [Info,setInfo]=useState([])
     const {setShowCard}=useStore()
     useEffect(() => {
-        const info=JSON.parse(sessionStorage.getItem('info'))
-        setInfo(info)
     const fetchData = async () => {
         const resultArray = [];
+        const result=await getData('info')
+        setInfo(result.data)
         for (let i = 0; i < props.data.length && i < 3; i++) {
         const result = await getData(props.data[i]); 
         resultArray.push({
