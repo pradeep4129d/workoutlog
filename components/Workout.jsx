@@ -23,12 +23,18 @@ export const Workout = () => {
       for(let i=0;i<Workout.length;i++){
         info.push({name:Workout[i],completed:false,resume:false,resumedIndex:0})
       }
+      const result1 = await getData('info');
+        if(result1===null){
+          await addData({ id:'info', data });
+        }
+      }
       if(!sessionStorage.getItem('info')){
         sessionStorage.setItem('info',JSON.stringify(info))
       }
       sessionStorage.setItem('curmuscle',null)
     }
     getday()
+
   },[])
   return (
     <div className='routine'>

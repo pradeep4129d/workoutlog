@@ -6,7 +6,6 @@ const Cards = (props) => {
     const [data, setData] = useState([]);
     const [Info,setInfo]=useState([])
     const {setShowCard}=useStore()
-    const [r,setr]=useState(['-15','5','25'])
     useEffect(() => {
         const info=JSON.parse(sessionStorage.getItem('info'))
         setInfo(info)

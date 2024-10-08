@@ -27,21 +27,15 @@ export const StartExercise = () => {
         const getdata=async()=>{
             const result = await getData(info[index].name)
             if(result){
+                console.log(result)
                 setImg(result.data.imgurl)
                 setExercises(result.data.exercises)
-                setLoad({prev:result.data.exercises[curexercise].sets[setIndex].load,target:0})
-                if(result.data.exercises[curexercise].sets.targetReps===result.data.exercises[curexercise].sets[setindex].reps){
-                    let weight=0
-                    let reps=0
-                    while(weight<load.prev){
-                        weight+=(result.data.exercises[curexercise].sets[setIndex].working.weight+result.data.exercises[curexercise].sets.weightIncrement)
-                        reps++
-                    }
-                    setLoad({...load,target:weight})
-                    setAttrs({weight:result.data.exercises[curexercise].sets[setIndex].working.weight+result.data.exercises[curexercise].sets.weightIncrement,reps:reps})
+                if(result.data.exercises[curexercise].targetReps===Number(result.data.exercises[curexercise].sets[setindex].working.reps)){
+                    setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:(Number(result.data.exercises[curexercise].sets[setindex].working.weight)+result.data.exercises[curexercise].weightIncrement)*5+Number(result.data.exercises[curexercise].sets[setindex].working.weight)*(result.data.exercises[curexercise].targetReps-5)})
+                    setAttrs({weight:Number(result.data.exercises[curexercise].sets[setIndex].working.weight)+result.data.exercises[curexercise].weightIncrement,reps:5})
                 }
                 else{
-                    setLoad({...load,target:Number(result.data.exercises[curexercise].sets[setIndex].working.weight)+result.data.exercises[curexercise].sets[setIndex].load})
+                    setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:Number(result.data.exercises[curexercise].weightIncrement)+result.data.exercises[curexercise].sets[setIndex].load})
                     setAttrs({weight:Number(result.data.exercises[curexercise].sets[setIndex].working.weight),reps:Number(result.data.exercises[curexercise].sets[setIndex].working.reps)+1})
                 }
             }
@@ -55,7 +49,7 @@ return (
             <div data-status="inprogress" class="teams">
                 <span class="team-info team-home">
                 <span class="team-info-container">
-                    <span class="team-name-info prev">{exercises.length&&exercises[curexercise].sets[setIndex].load}kg</span>
+                    <span class="team-name-info prev">{load.prev}kg</span>
                 </span>
                 </span>
                 <span class="event-scoreboard">
@@ -72,9 +66,7 @@ return (
                 <span class="team-info-container">
                     <span class="team-icon-container"></span>
                     <span class="team-name-info target">
-                    {exercises.length && 
-                        (Number(exercises[curexercise].sets[setIndex].load) + 
-                        Number(exercises[curexercise].sets[setIndex].working.weight))}kg
+                    {load.target}kg
                     </span>
                 </span>
                 </span>
@@ -87,9 +79,9 @@ return (
                 <p>set-{curexercise+1}</p>
                 <p className='ws'>Working set</p>
                 <div className="e r">
-                    <div className="rep">{Number(exercises[curexercise].sets[setIndex].working.reps)+1} reps</div>
-                    <div className="weight">{exercises[curexercise].sets[setIndex].working.weight} kg</div>
-                    <div className="load">{Number(exercises[curexercise].sets[setIndex].working.reps)*Number(exercises[curexercise].sets[setIndex].working.weight)+Number(exercises[curexercise].sets[setIndex].working.weight)}kg load</div>
+                    <div className="rep">{attrs.reps} reps</div>
+                    <div className="weight">{attrs.weight} kg</div>
+                    <div className="load">{attrs.weight*attrs.reps}kg load</div>
                 </div>
             </div>
             </>}
