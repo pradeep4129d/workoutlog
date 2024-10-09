@@ -5,6 +5,7 @@ export const StartExercise = () => {
     const [Info,setInfo]=useState([])
     const [exercises,setExercises]=useState([])
     const [load,setLoad]=useState({prev:0,target:0})
+    const [curLoad,setCurLoad]=useState(0)
     const [attrs,setAttrs]=useState({weight:0,reps:0})
     const [dropAttr,setDropAttr]=useState([{weight:0,reps:0}])
     const [refresh,setRefresh]=useState(false)
@@ -36,8 +37,22 @@ export const StartExercise = () => {
                 setImg(result.data.imgurl)
                 setExercises(result.data.exercises)
                 if(result.data.exercises[curexercise].targetReps===Number(result.data.exercises[curexercise].sets[setIndex].working.reps)){
-                    setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:(Number(result.data.exercises[curexercise].sets[setIndex].working.weight)+result.data.exercises[curexercise].weightIncrement)*5+Number(result.data.exercises[curexercise].sets[setIndex].working.weight)*(result.data.exercises[curexercise].targetReps-5)})
-                    setAttrs({weight:Number(result.data.exercises[curexercise].sets[setIndex].working.weight)+Number(result.data.exercises[curexercise].weightIncrement),reps:5})
+                    var weight=0
+                    var reps=0
+                    const newWeight=Number(result.data.exercises[curexercise].sets[setIndex].working.weight)+Number(result.data.exercises[curexercise].weightIncrement)
+                    const workingLoad=Number(result.data.exercises[curexercise].sets[setIndex].working.weight)*Number(result.data.exercises[curexercise].sets[setIndex].working.reps)
+                    console.log(workingLoad)
+                    while(weight<workingLoad/2){
+                        weight+=newWeight
+                        reps++
+                    }
+                    let i=reps
+                    while(i!=result.data.exercises[curexercise].targetReps){
+                        weight+=Number(result.data.exercises[curexercise].sets[setIndex].working.weight)
+                        i++
+                    }
+                    setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:weight})
+                    setAttrs({weight:newWeight,reps:reps})
                 }
                 else{
                     setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:Number(result.data.exercises[curexercise].weightIncrement)+result.data.exercises[curexercise].sets[setIndex].load})
@@ -62,7 +77,7 @@ return (
                         <img src={img} alt="" />
                     </span>
                     <span class="score-container">
-                    <span class="score-away">0kg</span>
+                    <span class="score-away">{curLoad}kg</span>
                     </span>
                 </span>
                 </span>
@@ -87,6 +102,8 @@ return (
                     <div className="weight">{attrs.weight} kg</div>
                     <div className="load">{attrs.weight*attrs.reps}kg load</div>
                 </div>
+                <p className="ws">Drop sets</p>
+                <div className="e r"></div>
             </div>
             </>}
         

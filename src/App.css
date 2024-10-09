@@ -539,7 +539,7 @@ body{
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .card{
-  width: 88vw;
+  width: 87vw;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);

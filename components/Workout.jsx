@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getData,addData } from '../src/indexedBD'
+import { getData,addData, updateData } from '../src/indexedBD'
 import Cards from './Cards'
 import { useStore } from '../src/store'
 import { StartExercise } from './StartExercise'
@@ -26,6 +26,9 @@ export const Workout = () => {
       const result1 = await getData('info');
         if(result1===null){
           await addData({ id:'info', data:info});
+        }
+        else{
+          await updateData({id:'info',data:info})
         }
       const result2=await getData('curmuscle')
       if(result2===null){

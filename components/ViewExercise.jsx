@@ -93,10 +93,14 @@ export const ViewExercise = (props) => {
                             }}/></>:record.data.exercises[index].sets[index2].working.reps} reps</div>
                         <div className='weight'>{edit?<><input type="number" name="" id="wt" onChange={(e)=>{setAttrs({...attrs,weight:e.target.value})}} onBlur={(e)=>{
                             if(attrs.weight<record.data.exercises[index].sets[index2].working.weight || attrs.reps<record.data.exercises[index].sets[index2].working.reps){
-                                const diffload=record.data.exercises[index].sets[index2].load-(attrs.weight*attrs.reps)
+                                console.log('decrease')
+                                const diffload=(record.data.exercises[index].sets[index2].working.weight*record.data.exercises[index].sets[index2].working.reps)-(attrs.weight*attrs.reps)
+                                console.log(diffload)
                                 record.data.exercises[index].sets[index2].load-=diffload
                             }else{
-                                const diffload=(attrs.weight*attrs.reps)-record.data.exercises[index].sets[index2].load
+                                console.log('increase')
+                                const diffload=(attrs.weight*attrs.reps)-(record.data.exercises[index].sets[index2].working.weight*record.data.exercises[index].sets[index2].working.reps)  
+                                console.log(diffload)
                                 record.data.exercises[index].sets[index2].load+=diffload
                             }
                                 record.data.exercises[index].sets[index2].working.weight=attrs.weight
