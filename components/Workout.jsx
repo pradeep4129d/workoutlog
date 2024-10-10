@@ -21,7 +21,7 @@ export const Workout = () => {
       setWorkout(Workout)
       const info=[]
       for(let i=0;i<Workout.length;i++){
-        info.push({name:Workout[i],completed:false,resume:false,resumedSetIndex:0})
+        info.push({name:Workout[i],completed:false,resume:false,resumedExIndex:0,resumedSetIndex:0})
       }
       const result1 = await getData('info');
         if(result1===null){

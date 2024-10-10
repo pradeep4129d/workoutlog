@@ -171,8 +171,8 @@ export const ViewExercise = (props) => {
                     </div>
                     </>
                 })}
-                <div className="e" onClick={()=>{
-                record.data.exercises[index].sets.push({working:{weight:0,reps:0},dropset:[],load:0})
+                <div className="e" onClick={()=>{   
+                record.data.exercises[index].sets.push({working:{weight:0,reps:0},dropset:[],load:0,failCount:0})
                 updateData(record)
                 .then(() => console.log("Record updated successfully"))
                 .catch(error => console.error("Failed to update record: ", error));

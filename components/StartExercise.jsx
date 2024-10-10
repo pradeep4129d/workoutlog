@@ -4,8 +4,13 @@ import { getData } from '../src/indexedBD'
 export const StartExercise = () => {
     const [Info,setInfo]=useState([])
     const [exercises,setExercises]=useState([])
+    const [dropCheck,setDropCheck]=useState([false])
+    const [record,setRecord]=useState()
+    const [workingReps,setWorkingReps]=useState()
     const [load,setLoad]=useState({prev:0,target:0})
     const [reps,setReps]=useState(0)
+    const [failedReps,setFailedReps]=useState(0)
+    const [curMuscle,setCurMuscle]=useState(0)
     const [curLoad,setCurLoad]=useState(0)
     const [checked,setChecked]=useState(false)
     const [dropsets,setDropSets]=useState([])
@@ -23,20 +28,20 @@ export const StartExercise = () => {
             }
             const result2=await getData('curmuscle')
             if(result2){
-                setCurExercise(result2.data)
-            }
-            if(Info.length){
-                setSetIndex(Info[curexercise].resumedSetIndex)
-            }
+                setCurMuscle(result2.data)
+                if(Info.length){
+                    setCurExercise(Info[result2.data].resumedExIndex)
+                    setSetIndex(Info[result2.data].resumedSetIndex)
+                }
+            } 
         }
         getInfos()
-        
     },[refresh])
     useEffect(()=>{
         const getdata=async()=>{
-            const result = await getData(Info[curexercise].name)
+            const result = await getData(Info[curMuscle].name)
             if(result){
-                console.log(result)
+                setRecord(result)
                 setImg(result.data.imgurl)
                 setExercises(result.data.exercises)
                 if(result.data.exercises[curexercise].targetReps===Number(result.data.exercises[curexercise].sets[setIndex].working.reps)){
@@ -56,6 +61,7 @@ export const StartExercise = () => {
                     }
                     setLoad({prev:Number(result.data.exercises[curexercise].sets[setIndex].load),target:weight})
                     setAttrs({weight:newWeight,reps:reps})
+                    setWorkingReps(reps)
                     if(!dropsets.length)
                     setDropSets([...dropsets,{weight:Number(result.data.exercises[curexercise].sets[setIndex].working.weight),reps:result.data.exercises[curexercise].targetReps-reps}])
                 }
@@ -106,8 +112,9 @@ return (
                 <p className='ws'>Working set</p>
                 <div className="e r">
                     <div className="rep">{!checked?<><input type='number' value={attrs.reps} onChange={(e)=>{
-                        if(e.target.value<exercises[curexercise].targetReps){
+                        if(e.target.value<exercises[curexercise].targetReps && e.target.value>0){
                             setDropSets([{weight:Number(exercises[curexercise].sets[setIndex].working.weight),reps:(exercises[curexercise].targetReps-e.target.value)}])
+                            setFailedReps(workingReps-e.target.value)
                         }
                         if(e.target.value>=exercises[curexercise].targetReps){
                             setDropSets([])
@@ -149,14 +156,34 @@ return (
                 <p className="ws">Drop sets</p>
                 {
                     dropsets.map((drop,index)=>{
+                        
                         return <>
                             <div className="e r">
-                                <div className="rep">{drop.reps} reps</div>
+                                <div className="rep">{!dropCheck[index]?<><input type='number' value={dropsets[index].reps} onChange={(e)=>{
+                                    const newReps = e.target.value;
+                                    const updatedDropsets = dropsets.map((drop, i) => {
+                                    if (i === index) {
+                                        return { ...drop, reps:newReps};
+                                    }
+                                        return drop;
+                                    });
+                                    if(newReps<dropsets[index].reps){
+                                        console.log({weight:dropsets[index].weight-Number(record.data.exercises[curexercise].weightIncrement),reps:record.data.exercises[curexercise].targetReps-attrs.reps-updatedDropsets[index].reps})
+                                        updatedDropsets.push({weight:dropsets[index].weight-Number(record.data.exercises[curexercise].weightIncrement),reps:dropsets[index].reps-newReps})
+                                    }
+                                    setDropSets(updatedDropsets);
+                                }}/>reps</> :<>{drop.reps} reps</>}
+                                </div>
                                 <div className="weight">{drop.weight} kg</div>
                                 <div className="load">{drop.weight*drop.reps}kg load</div>
                                 <div class="checkbox-wrapper-12" >
                                     <div class="cbx">
-                                        <input id="cbx-12" type="checkbox" />
+                                    <input id="cbx-12" type="checkbox" disabled={dropCheck[index]} onChange={()=>{
+                                        const droplist=dropCheck
+                                        droplist[index]=true
+                                        setDropCheck(droplist)
+                                    setCurLoad(curLoad+(drop.weight*drop.reps))
+                                    }}/>
                                         <label for="cbx-12"></label>
                                         <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
                                         <path d="M2 8.36364L6.23077 12L13 2"></path>
