@@ -769,7 +769,7 @@ body{
   left: 0;
   width: 24px;
   height: 24px;
-  border: 2px solid #bfbfc0;
+  border: 2px solid #6d6d6d;
   border-radius: 50%;
 }
 
@@ -794,7 +794,7 @@ body{
 }
 
 .checkbox-wrapper-12 .cbx svg path {
-  stroke: #fff;
+  stroke: #ffffff;
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -870,4 +870,34 @@ body{
       32px 16px 0 -10px transparent, 0 36px 0 -10px transparent,
       -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
   }
+}
+.e-name>ion-icon{
+  position: absolute;
+  left: -5px;
+}
+.button {
+  width: 120px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  border: 1px solid #36393c;
+  background-color: #36393c;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.137);
+}
+
+.text {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(27, 27, 27);
+  color: white;
+}
+
+.arrow path {
+  fill: #ffff
 }

@@ -33,6 +33,10 @@ return (
                         updateData({id:'curmuscle',data:index})
                         .then(() => console.log("Record updated successfully"))
                         .catch(error => console.error("Failed to update record: ", error));
+                        Info[index].resume=true
+                        updateData({id:'info',data:Info})
+                        .then(() => console.log("Record updated successfully"))
+                        .catch(error => console.error("Failed to update record: ", error));
                         setShowCard(false)}}>{Info[index].completed?<>completed</>:Info[index].resume?<>resume</>:<>start</>}</button>
                 </div>
         </div>

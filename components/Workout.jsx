@@ -8,7 +8,21 @@ import { json } from 'react-router-dom'
 export const Workout = () => {
   const [workout,setWorkout]=useState([])
   const [data,setData]=useState([])
-  const {showCard}=useStore()
+  const {showCard,setShowCard}=useStore()
+  useEffect(()=>{
+    const getdata=async()=>{
+      const info=await getData('info')
+      const curmuscle=await getData('curmuscle')
+      if(info){
+        console.log(info,curmuscle)
+        if(info.data[curmuscle.data].resume){
+          console.log(info.data[curmuscle.data].resume)
+          setShowCard(false)
+        }
+      }
+    }
+    getdata()
+  })
   useEffect(()=>{
     const getday=async()=>{
       const result=await getData('routine')
@@ -22,6 +36,10 @@ export const Workout = () => {
       const info=[]
       for(let i=0;i<Workout.length;i++){
         info.push({name:Workout[i],completed:false,resume:false,resumedExIndex:0,resumedSetIndex:0})
+      }
+      const res=await getData('draft')
+      if(res===null){
+        await addData({id:'draft',data:null})
       }
       const result1 = await getData('info');
         if(result1===null){
