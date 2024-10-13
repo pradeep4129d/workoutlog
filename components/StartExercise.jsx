@@ -357,6 +357,7 @@ return (
                     }
                     updateData(info)
                     setChecked(false)
+                    setCurLoad(0)
                     setRefresh(refresh?false:true)
                     setHandleIndex(handleindex?false:true)
                 }}> 
