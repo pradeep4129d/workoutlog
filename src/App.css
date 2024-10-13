@@ -451,17 +451,22 @@ body{
 .container {
   position: relative;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   margin-top: 0px;
   padding-bottom: 40px;
   border-radius: 10px;
 }
-/* From Uiverse.io by purplemanta6754 */ 
+.glass{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.glass>button{
+  margin-bottom: -15px;
+}
 .glass button {
-  position: absolute;
-  bottom: 10px;
   border-radius: 0.25rem;
   text-transform: uppercase;
   font-style: normal;
@@ -539,7 +544,7 @@ body{
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .card{
-  width: 87vw;
+  width: 83vw;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -871,33 +876,16 @@ body{
       -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
   }
 }
-.e-name>ion-icon{
+.e-name{
+  position: relative;
+}
+.back>ion-icon{
   position: absolute;
   left: -5px;
+  top: 100px;
 }
-.button {
-  width: 120px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  cursor: pointer;
-  border: 1px solid #36393c;
-  background-color: #36393c;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.137);
+.glass.next{
+  margin-top: 20px;
+  margin-left: 63%;
 }
 
-.text {
-  width: 70%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(27, 27, 27);
-  color: white;
-}
-
-.arrow path {
-  fill: #ffff
-}

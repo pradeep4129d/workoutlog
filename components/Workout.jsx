@@ -8,7 +8,11 @@ import { json } from 'react-router-dom'
 export const Workout = () => {
   const [workout,setWorkout]=useState([])
   const [data,setData]=useState([])
+  const [refresh,setRefresh]=useState(0)
   const {showCard,setShowCard}=useStore()
+  const refreshParent = () => {
+    setRefresh(prevKey => prevKey + 1); 
+  };
   useEffect(()=>{
     const getdata=async()=>{
       const info=await getData('info')
@@ -28,6 +32,10 @@ export const Workout = () => {
       const result=await getData('routine')
       const startdate=result.data.startDate
       const currdate=new Date(Date.now())
+      const date=await getData('curdate')
+      if(date===null){
+        await addData({id:'curdate',data:currdate})
+      }
       let timeDifference = currdate.getTime()-startdate.getTime()
       let daysDifference =Math.trunc(timeDifference / (1000 * 60 * 60 * 24))
       const Workout = result.data.day[ daysDifference % result.data.day.length]
@@ -46,7 +54,12 @@ export const Workout = () => {
           await addData({ id:'info', data:info});
         }
         else{
+          const curdate=await getData('curdate')
+          if(new Date(curdate.data).toDateString() !== new Date().toDateString()){
+            curdate.data=Date.now()
+          await updateData(curdate)
           await updateData({id:'info',data:info})
+          }
         }
       const result2=await getData('curmuscle')
       if(result2===null){
@@ -54,11 +67,11 @@ export const Workout = () => {
       }
     }
     getday()
-  },[])
+  },[showCard])
   return (
-    <div className='routine'>
+    <div className='routine' key={refresh}>
         {showCard && <div className="routine-box"><p>Today's Routine</p><Cards data={workout}/></div>}
-        {!showCard && <StartExercise/>}
+        {!showCard && <StartExercise refreshParent={refreshParent}/>}
     </div>
   )
 }

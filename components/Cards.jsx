@@ -29,6 +29,7 @@ return (
             <div className="container" key={index}>
                 <div  data-text={item.text} className="glass">
                     <img src={item.imgurl} alt={item.text} />
+                    {Info[index].completed?<><button className='button'>completed</button></>:
                     <button className="button" onClick={()=>{
                         updateData({id:'curmuscle',data:index})
                         .then(() => console.log("Record updated successfully"))
@@ -37,7 +38,7 @@ return (
                         updateData({id:'info',data:Info})
                         .then(() => console.log("Record updated successfully"))
                         .catch(error => console.error("Failed to update record: ", error));
-                        setShowCard(false)}}>{Info[index].completed?<>completed</>:Info[index].resume?<>resume</>:<>start</>}</button>
+                        setShowCard(false)}}>start</button>}
                 </div>
         </div>
         ))}
