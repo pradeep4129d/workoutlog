@@ -193,33 +193,34 @@ return (
                 <div className="e r">
                     <div className="rep">{!checked?<><input type='number' value={attrs.reps} onChange={(e)=>{
                         if(e.target.value<record.data.exercises[curexercise].targetReps && e.target.value>0){
+                            setDropCheck(false)
                             if((record.data.exercises[curexercise].targetReps===Number(record.data.exercises[curexercise].sets[setIndex].working.reps))){
                                 setDropCheck(false)
                                 setDropSets({weight:Number(record.data.exercises[curexercise].sets[setIndex].working.weight),reps:(record.data.exercises[curexercise].targetReps-e.target.value)})
                             }
                             else{
-                                var failedreps=workingReps-Number(e.target.value)
-                                console.log(failedreps)
-                                setDropCheck(false)
-                                setFailedReps(failedreps)
-                                if(e.target.value>workingReps){
+                                var failedreps=Number(record.data.exercises[curexercise].sets[setIndex].failCount)
+                                if(e.target.value>=workingReps){
                                     const diff=e.target.value-workingReps
-                                    console.log(diff)
-                                    if(diff>=failedReps){
+                                    console.log(diff,failedreps)
+                                    if(diff>=failedreps){
                                         setFailedReps(0)
                                         failedreps=0
                                     }
                                     else{
                                         failedreps-=diff
-                                        setFailedReps(failedReps-diff)
+                                        setFailedReps(failedreps)
                                     }
+                                }else{
+                                    failedreps=workingReps-e.target.value
+                                    setFailedReps(failedreps)
                                 }
                                 setDropSets({weight:Number(record.data.exercises[curexercise].sets[setIndex].working.weight)-Number(record.data.exercises[curexercise].weightIncrement),reps:record.data.exercises[curexercise].targetReps-e.target.value+failedreps})
                             }
                         }
-                        
                         if(e.target.value>=record.data.exercises[curexercise].targetReps){
                             setDropCheck(true)
+                            setFailedReps(0)
                             setDropSets({reps:0,weight:0})
                         }
                         setAttrs({...attrs,reps:e.target.value})
