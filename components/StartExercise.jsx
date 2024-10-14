@@ -202,7 +202,6 @@ return (
                                 var failedreps=Number(record.data.exercises[curexercise].sets[setIndex].failCount)
                                 if(e.target.value>=workingReps){
                                     const diff=e.target.value-workingReps
-                                    console.log(diff,failedreps)
                                     if(diff>=failedreps){
                                         setFailedReps(0)
                                         failedreps=0

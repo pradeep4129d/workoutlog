@@ -10,9 +10,22 @@ export const Workout = () => {
   const [data,setData]=useState([])
   const [refresh,setRefresh]=useState(0)
   const {showCard,setShowCard}=useStore()
+  const [postpone,setPostpone]=useState(false)
   const refreshParent = () => {
     setRefresh(prevKey => prevKey + 1); 
   };
+  useEffect(()=>{
+    const post=JSON.parse(localStorage.getItem('post'))
+    if(post){
+      console.log(post)
+      if(new Date(post.date).toDateString()===new Date().toDateString()){
+        setPostpone(true)
+      }
+      else{
+        localStorage.removeItem('post')
+      }
+    }
+  },[])
   useEffect(()=>{
     const getdata=async()=>{
       const info=await getData('info')
@@ -68,10 +81,25 @@ export const Workout = () => {
     }
     getday()
   },[showCard])
-  return (
+  return (<>
+    {!postpone?
     <div className='routine' key={refresh}>
-        {showCard && <div className="routine-box"><p>Today's Routine</p><Cards data={workout}/></div>}
+        {showCard && <div className="routine-box">
+          <p>Today's Routine</p><Cards data={workout}/>
+          <div className="glass">
+            <button className="post" onClick={async()=>{
+              localStorage.setItem('post',JSON.stringify({date:new Date(Date.now())}))
+              setPostpone(true);
+              const result=await getData('routine')
+              if(result!==null){
+                result.data.startDate = new Date(result.data.startDate); 
+                result.data.startDate.setDate(result.data.startDate.getDate() + 1); 
+              }
+              await updateData(result)
+            }}>Postpone</button>
+          </div>
+        </div>}
         {!showCard && <StartExercise refreshParent={refreshParent}/>}
-    </div>
+    </div>:<div className='message'>No Workout today</div> }</>
   )
 }

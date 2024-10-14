@@ -888,4 +888,13 @@ body{
   margin-top: 20px;
   margin-left: 63%;
 }
-
+.post{
+  position: absolute;
+  top: 60px;
+  right: 0;
+}
+.message{
+width: 100%;
+text-align: center;
+margin-top: 50%;
+}
