@@ -61,7 +61,7 @@ export const ViewExercise = (props) => {
             if(set){
                 updatedata.data.exercises[index].sets.splice(index2,1)
             }else{
-                updatedata.data.exercises.splice(index2,1)
+                updatedata.data.exercises.splice(index,1)
             }
             updateData(updatedata)
             .then(() => console.log("Record updated successfully"))
