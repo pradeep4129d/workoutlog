@@ -15,6 +15,16 @@ export const Workout = () => {
     setRefresh(prevKey => prevKey + 1); 
   };
   useEffect(()=>{
+    const putdate=async()=>{
+      const res1=await getData('yesterday')
+      if(res1===null){
+        const date=new Date(2024,9,1);
+        await addData({id:'yesterday',data:date})
+      }
+    }
+    putdate()
+  },[])
+  useEffect(()=>{
     const post=JSON.parse(localStorage.getItem('post'))
     if(post){
       console.log(post)
@@ -71,7 +81,14 @@ export const Workout = () => {
           if(new Date(curdate.data).toDateString() !== new Date().toDateString()){
             curdate.data=Date.now()
           await updateData(curdate)
-          await updateData({id:'info',data:info})
+          }
+          const yest=await getData('yesterday')
+          if(yest!=null){
+            if(new Date(yest.data).toDateString() !== new Date().toDateString()){
+              await updateData({id:'info',data:info})
+              yest.data=Date.now()
+              await updateData(yest)
+            }
           }
         }
       const result2=await getData('curmuscle')
