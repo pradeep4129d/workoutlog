@@ -29,9 +29,10 @@ export const Plan = () => {
                 </div>
               </div>
             })}
+            <div className="add-muscle"><div className="add-btn">add</div></div>
           </div>
         })}
-         <div className="e">
+         <div className="e add">
                 <ion-icon name="add-outline"></ion-icon>
                 <p>add day</p>
             </div>
