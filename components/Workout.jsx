@@ -70,7 +70,8 @@ export const Workout = () => {
           const curdate=await getData('curdate')
           if(new Date(curdate.data).toDateString() !== new Date().toDateString()){
             curdate.data=Date.now()
-          await updateData(curdate)}
+          await updateData(curdate)
+          }
           await updateData({id:'info',data:info})
           
         }

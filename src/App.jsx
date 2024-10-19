@@ -5,7 +5,7 @@ import { Workout } from '../components/Workout.jsx'
 import { All } from '../components/All'
 import { Plan } from '../components/Plan'
 import { Exercise } from '../components/Exercise'
-import { addData, getData } from './indexedBD'
+import { addData, getData, updateData } from './indexedBD'
 import { ViewExercise } from '../components/ViewExercise'
 
 function App() {
@@ -44,10 +44,14 @@ function App() {
           const date=new Date(2024,9,1);
           await addData({id:'routine',data:{name:'4-days Routine',day:[['chest','anteriordelt','abs'],['triceps','biceps','forearms'],['lats','traps','posteriordelt','forearms','abs'],['quads','hamstrings','adductors','glutues','gastrocnemius']],startDate:date,completed:false,prevday:3}})
         }
+        else{
+          const date=new Date(2024,9,1);
+          await updateData({id:'routine',data:{name:'4-days Routine',day:[['chest','anteriordelt','abs'],['triceps','biceps'],['lats','traps','posteriordelt','forearms','abs'],['quads','hamstrings','adductors','glutues','gastrocnemius']],startDate:date,completed:false,prevday:3}})
+        }
     };
     handleAddData()
   }, []);
-  
+
   return (
     <>
       <Routes>
