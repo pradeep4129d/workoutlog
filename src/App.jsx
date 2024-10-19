@@ -41,7 +41,7 @@ function App() {
       }
       const res1=await getData('routine')
         if(res1===null){
-          const date=new Date(2024,9,3);
+          const date=new Date(2024,9,1);
           await addData({id:'routine',data:{name:'4-days Routine',day:[['chest','anteriordelt','abs'],['triceps','biceps','forearms'],['lats','traps','posteriordelt','forearms','abs'],['quads','hamstrings','adductors','glutues','gastrocnemius']],startDate:date,completed:false,prevday:3}})
         }
     };
