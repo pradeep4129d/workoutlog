@@ -898,3 +898,51 @@ width: 100%;
 text-align: center;
 margin-top: 50%;
 }
+.days{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.days>p{
+  margin-top: 60px;
+}
+.day-container{
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid rgb(212, 211, 211);
+  border-radius: 10px;
+  height: 150px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+.day{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -15px;
+  left: 45px;
+  background-color: #0d1117;
+  height:30px;
+  width: 60px;
+}
+
+.day-container>.e{
+  display: flex;
+  width: max-content;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 35px;
+  font-size: 14px;
+  margin-top: 0;
+  margin-left: 5px;
+}
+.remove{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
