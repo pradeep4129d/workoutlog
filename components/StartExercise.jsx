@@ -33,13 +33,15 @@ export const StartExercise = ({refreshParent}) => {
                 info.data[curmuscle.data].resumedExIndex=0;
                 info.data[curmuscle.data].completed=true;
                 info.data[curmuscle.data].resume=false;
-                updateData(info);
+                await updateData(info);
                 setShowCard(true)
             }
             if(info.data[curmuscle.data].resumedSetIndex>result.data.exercises[info.data[curmuscle.data].resumedExIndex].sets.length-1){
                 info.data[curmuscle.data].resumedSetIndex=0
+                result.data.exercises[info.data[curmuscle.data]].sets.sort((a,b)=>(b.working.weight*b.working.reps)-(a.working.weight*a.working.reps))
+                await updateData(result)
                 info.data[curmuscle.data].resumedExIndex+=1
-                updateData(info)
+                await updateData(info)
             }}
             setRefresh(refresh?false:true)
         }

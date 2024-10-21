@@ -17,7 +17,6 @@ export const Plan = () => {
     }
     getPlan()
   },[refresh])
-  console.log(plan)
   const refreshParent = () => {
     setRefresh(refresh?false:true); 
   };
