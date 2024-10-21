@@ -5,7 +5,7 @@ import { Workout } from '../components/Workout.jsx'
 import { All } from '../components/All'
 import { Plan } from '../components/Plan'
 import { Exercise } from '../components/Exercise'
-import { addData, getData } from './indexedBD'
+import { addData, getData, updateData } from './indexedBD'
 import { ViewExercise } from '../components/ViewExercise'
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
     };
     handleAddData()
   }, []);
-  
+
   return (
     <>
       <Routes>

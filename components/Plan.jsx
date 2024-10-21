@@ -40,6 +40,9 @@ export const Plan = () => {
                     if(res){
                       res.data.day[index1].splice(index2,1)
                       console.log(res)
+                      if(res.data.day[index1].length===0){
+                        res.data.day.splice(index1,1)
+                      }
                       await updateData(res)
                       setRefresh(refresh?false:true)
                     }
@@ -54,13 +57,8 @@ export const Plan = () => {
             }}>add</div></div>
           </div>
         })}
-         <div className="e add" onClick={async()=>{
-          const res=await getData('routine')
-          if(res){
-            res.data.day.push([])
-            await updateData(res)
-          }
-          setRefresh(refresh?false:true)
+         <div className="e add" onClick={()=>{
+          setPlan([...plan,[]])
          }}>
                 <ion-icon name="add-outline"></ion-icon>
                 <p>add day</p>

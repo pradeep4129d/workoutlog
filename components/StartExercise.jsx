@@ -32,10 +32,9 @@ export const StartExercise = ({refreshParent}) => {
             if(info.data[curmuscle.data].resumedExIndex>result.data.exercises.length-1){
                 info.data[curmuscle.data].resumedExIndex=0;
                 info.data[curmuscle.data].completed=true;
-                info.data[curmuscle.data].resume=false
-                updateData(info)
+                info.data[curmuscle.data].resume=false;
+                updateData(info);
                 setShowCard(true)
-                
             }
             if(info.data[curmuscle.data].resumedSetIndex>result.data.exercises[info.data[curmuscle.data].resumedExIndex].sets.length-1){
                 info.data[curmuscle.data].resumedSetIndex=0

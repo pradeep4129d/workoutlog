@@ -10,7 +10,11 @@ export const ShowList=({refreshParent,index})=>{
                 return <div className="e" onClick={async()=>{
                     const res=await getData('routine')
                     if(res){
-                        res.data.day[index].push(ids[i])
+                        if(index>res.data.day.length-1){
+                            res.data.day.push([ids[i]])
+                        }else{
+                            res.data.day[index].push(ids[i])
+                        }
                         await updateData(res)
                     }
                     refreshParent()}}>

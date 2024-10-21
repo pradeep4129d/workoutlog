@@ -11,7 +11,7 @@ const Cards = (props) => {
         const resultArray = [];
         const result=await getData('info')
         setInfo(result.data)
-        for (let i = 0; i < props.data.length && i < 3; i++) {
+        for (let i = 0; i < props.data.length; i++) {
         const result = await getData(props.data[i]); 
         resultArray.push({
             text: props.data[i],
