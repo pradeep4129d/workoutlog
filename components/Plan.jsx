@@ -7,12 +7,15 @@ export const Plan = () => {
   const [refresh,setRefresh]=useState(false)
   const [showList,setShowList]=useState(false)
   const [index,setIndex]=useState(0)
+  const [date,setDate]=useState()
   useEffect(()=>{
     setShowList(false)
     const getPlan=async()=>{
       const result=await getData('routine')
       if(result){
         setPlan(result.data.day)
+        
+        setDate(new Date(result.data.startDate).toDateString() )
       }
     }
     getPlan()
@@ -25,6 +28,9 @@ export const Plan = () => {
     {showList&& <ShowList refreshParent={refreshParent} index={index}/>}
     <div className='plan-tab'>
       <p>Current Plan</p>
+      <p>Start Date: {date}</p>
+      <input style={{background:'transparent',border:'none',color:'white',fontSize:'16px',marginBottom:'15px'}} required type="date" name="" id="" autoFocus />
+      <div className='add-btn'>change</div>
       <div className="days">
         {plan.map((day,index1)=>{
           return <div className="day-container">
