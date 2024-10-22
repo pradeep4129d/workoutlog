@@ -8,6 +8,7 @@ export const Plan = () => {
   const [showList,setShowList]=useState(false)
   const [index,setIndex]=useState(0)
   const [date,setDate]=useState()
+  const [edit,setEdit]=useState(false)
   useEffect(()=>{
     setShowList(false)
     const getPlan=async()=>{
@@ -29,8 +30,8 @@ export const Plan = () => {
     <div className='plan-tab'>
       <p>Current Plan</p>
       <p>Start Date: {date}</p>
-      <input style={{background:'transparent',border:'none',color:'white',fontSize:'16px',marginBottom:'15px'}} required type="date" name="" id="" autoFocus />
-      <div className='add-btn'>change</div>
+      {edit && <input style={{background:'transparent',border:'none',color:'white',fontSize:'16px',marginBottom:'15px'}} required type="date" name="" id="" autoFocus />}
+      <div className='add-btn' onClick={()=>{setEdit(true)}}>change</div>
       <div className="days">
         {plan.map((day,index1)=>{
           return <div className="day-container">
