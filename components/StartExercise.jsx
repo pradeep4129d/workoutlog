@@ -38,7 +38,7 @@ export const StartExercise = ({refreshParent}) => {
             }
             if(info.data[curmuscle.data].resumedSetIndex>result.data.exercises[info.data[curmuscle.data].resumedExIndex].sets.length-1){
                 info.data[curmuscle.data].resumedSetIndex=0
-                result.data.exercises[info.data[curmuscle.data]].sets.sort((a,b)=>(b.working.weight*b.working.reps)-(a.working.weight*a.working.reps))
+                result.data.exercises[info.data[curmuscle.data].resumedExIndex].sets.sort((a,b)=>(b.working.weight*b.working.reps)-(a.working.weight*a.working.reps))
                 await updateData(result)
                 info.data[curmuscle.data].resumedExIndex+=1
                 await updateData(info)
@@ -60,7 +60,7 @@ export const StartExercise = ({refreshParent}) => {
                     setCurExercise(Info[result2.data].resumedExIndex)
                     setSetIndex(Info[result2.data].resumedSetIndex)
                 }
-            } 
+            }
         }
         getInfos()
     },[refresh])
@@ -77,7 +77,6 @@ export const StartExercise = ({refreshParent}) => {
                     refreshParent()
                 }
             if(result && curexercise<=result.data.exercises.length-1){
-                
                 setRecord(result)
                 setImg(result.data.imgurl)
                 setExercises(result.data.exercises)
