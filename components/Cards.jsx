@@ -13,17 +13,20 @@ const Cards = (props) => {
         setInfo(result.data)
         for (let i = 0; i < props.data.length; i++) {
         const result = await getData(props.data[i]); 
+        console.log(result)
         resultArray.push({
             text: props.data[i],
             imgurl: result.data.imgurl
         });
         }
+        console.log(resultArray)
         setData(resultArray); 
     };
     fetchData();
     }, [props.data]);
-
 return (
+    <>
+    {data.length && 
     <div className="Card">
         {data.map((item, index) => (
             <div className="container" key={index}>
@@ -42,7 +45,9 @@ return (
                 </div>
         </div>
         ))}
-    </div>
+        <p></p>
+    </div>}
+    </>
     );
 }
 

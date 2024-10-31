@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../src/store'
-import { getData } from '../src/indexedBD'
+import { getData ,updateData} from '../src/indexedBD'
 
 export const Navbar = () => {
     const [opened,setOpened]=useState(false)
@@ -19,12 +19,7 @@ export const Navbar = () => {
       }
       getdata()
     })
-    const handleresume=async() =>{
-      Info[index].resume=true
-      updateData({id:'info',data:Info})
-      .then(() => console.log("Record updated successfully"))
-      .catch(error => console.error("Failed to update record: ", error));
-    }
+
   return (
     <>
     <div className="background" onClick={()=>{setOpened(opened?false:true)}}>
@@ -36,11 +31,9 @@ export const Navbar = () => {
     </div>
     <div className="navs">
             <Link to='/all'  onClick={()=>{
-              handleresume()
               setOpened(opened?false:true)}} className={"all "+opened}><ion-icon name="folder-outline"></ion-icon></Link>
             <Link to='/' onClick={()=>{setOpened(opened?false:true)}}className={"workout "+opened}><ion-icon name="barbell-outline"></ion-icon></Link>
             <Link to='/plan'  onClick={()=>{
-              handleresume()
               setOpened(opened?false:true)}} className={"plan "+opened}><ion-icon name="calendar-outline"></ion-icon></Link>
     </div>
   </>

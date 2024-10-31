@@ -3,11 +3,9 @@ import { getData,addData, updateData } from '../src/indexedBD'
 import Cards from './Cards'
 import { useStore } from '../src/store'
 import { StartExercise } from './StartExercise'
-import { json } from 'react-router-dom'
 
 export const Workout = () => {
   const [workout,setWorkout]=useState([])
-  const [data,setData]=useState([])
   const [refresh,setRefresh]=useState(0)
   const {showCard,setShowCard}=useStore()
   const [postpone,setPostpone]=useState(false)

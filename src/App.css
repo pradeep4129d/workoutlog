@@ -893,6 +893,9 @@ body{
   top: 60px;
   right: 0;
 }
+.Card>p{
+  margin-top: 50px;
+}
 .message{
 width: 100%;
 text-align: center;

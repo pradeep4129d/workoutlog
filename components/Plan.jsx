@@ -15,8 +15,8 @@ export const Plan = () => {
       const result=await getData('routine')
       if(result){
         setPlan(result.data.day)
-        
-        setDate(new Date(result.data.startDate).toDateString() )
+        const formattedDate = new Date(result.data.startDate).toISOString().slice(0, 10);
+        setDate(formattedDate);
       }
     }
     getPlan()
@@ -29,17 +29,21 @@ export const Plan = () => {
     {showList&& <ShowList refreshParent={refreshParent} index={index}/>}
     <div className='plan-tab'>
       <p>Current Plan</p>
-      <p>Start Date: {date}</p>
-      {edit && <input style={{background:'transparent',border:'none',color:'white',fontSize:'16px',marginBottom:'15px'}} required type="date" name="" id="" autoFocus />}
-      <div className='add-btn' onClick={()=>{setEdit(true)}}>change</div>
+      <p>Start Date : <input value={date} style={{background:'transparent',border:'none',color:'white',fontSize:'16px',marginBottom:'15px',outline:'none',appearance:'none'}} required type="date" name="" id="" onChange={async(e)=>{
+        setDate(e.target.value);
+        const result=await getData('routine')
+        const selectedDate = new Date(e.target.value)
+        result.data.startDate=selectedDate
+        await updateData(result)
+      }} /></p>
       <div className="days">
         {plan.map((day,index1)=>{
-          return <div className="day-container">
+          return <div className="day-container" key={index1}>
             <div className="day">
               <p>day -{index1+1}</p>
             </div>
             {day.map((muscle,index2)=>{
-              return <div className="e">
+              return <div className="e" key={index2}>
                 <p>{muscle}</p>
                 <div className="remove" onClick={async()=>{
                     const res=await getData('routine')
